@@ -1,4 +1,5 @@
 import {module} from 'angular';
+import {dirname} from './path';
 import './module.css!';
 
 
@@ -11,7 +12,7 @@ app.config(function ($stateProvider) {
 		url: `/${MODULE_NAME}`,
 		views: {
 			'content@': {
-				templateUrl: 'module.html',
+				templateUrl: `${dirname}/module.html`,
 				controller: ModuleController,
 				controllerAs: 'module'
 			}
