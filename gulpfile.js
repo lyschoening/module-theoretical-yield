@@ -1,7 +1,6 @@
 const {create} = require('browser-sync');
 const {exec} = require('child_process');
 const del = require('del');
-const {readFileSync} = require('fs');
 const gulp = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const changed = require('gulp-changed');
@@ -10,12 +9,9 @@ const size = require('gulp-size');
 const sourcemaps = require('gulp-sourcemaps');
 const tslint = require('gulp-tslint');
 const typescript = require('gulp-typescript');
-const {env, log, File} = require('gulp-util');
-const jspm = require('jspm');
+const {log} = require('gulp-util');
 const merge = require('merge-stream');
-const jspmConfig = require('jspm/lib/config');
 const split = require('split2');
-const through = require('through2');
 
 const bs = create('iLoop');
 
