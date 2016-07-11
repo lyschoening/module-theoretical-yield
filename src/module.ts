@@ -7,7 +7,7 @@ const app = module(MODULE_NAME, []);
 
 
 app.config(function ($stateProvider) {
-	$stateProvider.state(`platform.${MODULE_NAME}`, {
+	$stateProvider.state(`${MODULE_NAME}`, {
 		url: `/${MODULE_NAME}`,
 		views: {
 			'content@': {
