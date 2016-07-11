@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
         url: "/" + exports.MODULE_NAME,
         views: {
             'content@': {
-                templateUrl: path_1.dirname + "/module.html",
+                templateUrl: path_1.dirname(module.id) + "/module.html",
                 controller: ModuleController,
                 controllerAs: 'module'
             }

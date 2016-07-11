@@ -1,10 +1,10 @@
-import {module} from 'angular';
+import {module as ngModule} from 'angular';
 import {dirname} from './path';
 import './module.css!';
 
 
 export const MODULE_NAME = 'example';
-const app = module(MODULE_NAME, []);
+const app = ngModule(MODULE_NAME, []);
 
 
 app.config(function ($stateProvider) {
@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
 		url: `/${MODULE_NAME}`,
 		views: {
 			'content@': {
-				templateUrl: `${dirname}/module.html`,
+				templateUrl: `${dirname(module.id)}/module.html`,
 				controller: ModuleController,
 				controllerAs: 'module'
 			}
