@@ -262,10 +262,10 @@ gulp.task('serve', gulp.series(
 	'build',
 	function start() {
 		// Start watching files for changes
-		gulp.watch(PATHS.src.ts, gulp.task('build/js'));
+		gulp.watch([].concat(PATHS.src.ts, ['./bootstrap.config.ts', './bootstrap.ts']), gulp.task('build/js'));
 		gulp.watch(PATHS.src.static, gulp.task('build/static'));
 		gulp.watch(PATHS.src.css, gulp.task('build/css'));
-		gulp.watch(PATHS.src.html, gulp.task('build/html'));
+		gulp.watch([].concat(PATHS.src.html, ['./index.html']), gulp.task('build/html'));
 		// Start BS server
 		gulp.task('server')();
 	}

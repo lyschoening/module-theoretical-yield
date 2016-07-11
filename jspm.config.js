@@ -1,20 +1,18 @@
 SystemJS.config({
 	paths: {
-		"src/": "./",
 		"github:": "jspm_packages/github/"
 	},
 	browserConfig: {
-		"baseURL": "/"
+		"baseURL": "/",
+		"paths": {
+			"src/": ""
+		}
 	},
-	// packages: {
-	// 	"app": {
-	// 		"map": {
-	// 			"./env": {
-	// 				"~production": "./env.dev"
-	// 			}
-	// 		}
-	// 	}
-	// }
+	packages: {
+		"src": {
+			"defaultExtension": "js"
+		}
+	}
 });
 
 SystemJS.config({
@@ -24,7 +22,8 @@ SystemJS.config({
 	map: {
 		"angular": "github:angular/bower-angular@1.5.7",
 		"angular-material": "github:angular/bower-material@1.0.9",
-		"angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1"
+		"angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1",
+		"css": "github:systemjs/plugin-css@0.1.23"
 	},
 	packages: {
 		"github:angular/bower-material@1.0.9": {
