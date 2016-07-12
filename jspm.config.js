@@ -23,7 +23,8 @@ SystemJS.config({
 		"angular": "github:angular/bower-angular@1.5.7",
 		"angular-material": "github:angular/bower-material@1.0.9",
 		"angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1",
-		"css": "github:systemjs/plugin-css@0.1.23"
+		"css": "github:systemjs/plugin-css@0.1.23",
+		"decaf-common": "github:biosustain/decaf-frontend-common@master"
 	},
 	packages: {
 		"github:angular/bower-material@1.0.9": {

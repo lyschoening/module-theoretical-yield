@@ -1,5 +1,5 @@
 import {module as ngModule} from 'angular';
-import {dirname} from './path';
+import {dirname} from 'decaf-common';
 import './module.css!';
 
 
