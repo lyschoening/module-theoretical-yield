@@ -20,8 +20,10 @@
 			}
 		</style>
 	</head>
-	<body ng-cloak>
-		<app></app>
+	<body layout="column" ng-cloak>
+		<app layout="column" flex>
+			<app-header>Example</app-header>
+		</app>
 
 		<!-- ES6/Polyfills -->
 		<script src="jspm_packages/system.js"></script>

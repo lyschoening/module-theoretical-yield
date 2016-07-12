@@ -8,7 +8,7 @@ const app = ngModule(MODULE_NAME, []);
 
 
 app.config(function ($stateProvider) {
-	$stateProvider.state(`${MODULE_NAME}`, {
+	$stateProvider.state(`root.${MODULE_NAME}`, {
 		url: `/${MODULE_NAME}`,
 		views: {
 			'content@': {

@@ -5,7 +5,7 @@ require('./module.css!');
 exports.MODULE_NAME = 'example';
 var app = angular_1.module(exports.MODULE_NAME, []);
 app.config(function ($stateProvider) {
-    $stateProvider.state("" + exports.MODULE_NAME, {
+    $stateProvider.state("root." + exports.MODULE_NAME, {
         url: "/" + exports.MODULE_NAME,
         views: {
             'content@': {
