@@ -1,6 +1,7 @@
 SystemJS.config({
 	paths: {
-		"github:": "jspm_packages/github/"
+		"github:": "jspm_packages/github/",
+		"npm:": "jspm_packages/npm/"
 	},
 	browserConfig: {
 		"baseURL": "/",
@@ -17,14 +18,16 @@ SystemJS.config({
 
 SystemJS.config({
 	packageConfigPaths: [
-		"github:*/*.json"
+		"github:*/*.json",
+		"npm:@*/*.json",
+		"npm:*.json"
 	],
 	map: {
 		"angular": "github:angular/bower-angular@1.5.7",
 		"angular-material": "github:angular/bower-material@1.0.9",
 		"angular-ui-router": "github:angular-ui/angular-ui-router-bower@0.3.1",
 		"css": "github:systemjs/plugin-css@0.1.23",
-		"decaf-common": "github:biosustain/decaf-frontend-common@master"
+		"decaf-common": "npm:decaf-common@0.0.2"
 	},
 	packages: {
 		"github:angular/bower-material@1.0.9": {
