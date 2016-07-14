@@ -25,5 +25,7 @@ var ModuleController = (function () {
     }
     return ModuleController;
 }());
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = app;
 
 //# sourceMappingURL=module.js.map

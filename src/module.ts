@@ -29,3 +29,5 @@ class ModuleController {
 		console.log(modulesConfig);
 	}
 }
+
+export default app;
