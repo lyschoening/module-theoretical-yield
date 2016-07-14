@@ -13,6 +13,9 @@ app.config(function ($stateProvider) {
                 controller: ModuleController,
                 controllerAs: 'module'
             }
+        },
+        data: {
+            module: exports.MODULE_NAME
         }
     });
 });

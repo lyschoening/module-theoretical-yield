@@ -16,6 +16,9 @@ app.config(function ($stateProvider) {
 				controller: ModuleController,
 				controllerAs: 'module'
 			}
+		},
+		data: {
+			module: MODULE_NAME
 		}
 	});
 });
