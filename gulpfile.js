@@ -78,6 +78,12 @@ gulp.task('jspm/install', function () {
 		.pipe(split())
 		.on('data', (data) => log(data));
 
+	proc.on('close', () => {
+		// Reload the browser.
+		// Only when BS is running.
+		bs.reload('jspm.config.js');
+	});
+
 	return proc;
 });
 
@@ -258,6 +264,7 @@ gulp.task('serve', gulp.series(
 	'build',
 	function start() {
 		// Start watching files for changes
+		gulp.watch('jspm.config.js', gulp.task('build/deps'));
 		gulp.watch([].concat(PATHS.src.ts, ['./bootstrap.config.ts', './bootstrap.ts']), gulp.task('build/js'));
 		gulp.watch(PATHS.src.static, gulp.task('build/static'));
 		gulp.watch(PATHS.src.css, gulp.task('build/css'));
