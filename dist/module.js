@@ -12,6 +12,9 @@ app.config(function ($stateProvider) {
                 templateUrl: decaf_common_1.dirname(module.id) + "/module.html",
                 controller: ModuleController,
                 controllerAs: 'module'
+            },
+            'toolbar@': {
+                templateUrl: decaf_common_1.dirname(module.id) + "/toolbar.tpl.html"
             }
         },
         data: {

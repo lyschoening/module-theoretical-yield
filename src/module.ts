@@ -15,6 +15,9 @@ app.config(function ($stateProvider) {
 				templateUrl: `${dirname(module.id)}/module.html`,
 				controller: ModuleController,
 				controllerAs: 'module'
+			},
+			'toolbar@': {
+				templateUrl: `${dirname(module.id)}/toolbar.tpl.html`
 			}
 		},
 		data: {
