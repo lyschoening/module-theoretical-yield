@@ -20,7 +20,8 @@ app.config(function ($stateProvider) {
     });
 });
 var ModuleController = (function () {
-    function ModuleController() {
+    function ModuleController(modulesConfig) {
+        console.log(modulesConfig);
     }
     return ModuleController;
 }());

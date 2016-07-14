@@ -25,5 +25,7 @@ app.config(function ($stateProvider) {
 
 
 class ModuleController {
-	constructor() {}
+	constructor(modulesConfig) {
+		console.log(modulesConfig);
+	}
 }
