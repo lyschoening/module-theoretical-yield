@@ -125,11 +125,6 @@
                         "format": "global"
                     }
                 }
-            },
-            "github:biosustain/decaf-frontend-common@master": {
-                "map": {
-                    "*": "dist/*"
-                }
             }
         }
     }
