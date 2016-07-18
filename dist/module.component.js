@@ -33,4 +33,4 @@ var ModuleController = (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = app;
 
-//# sourceMappingURL=module.js.map
+//# sourceMappingURL=module.component.js.map
