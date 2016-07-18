@@ -39,7 +39,7 @@ var ModuleController = (function () {
         // Turn of WS inspection for TS
         // noinspection TypeScriptUnresolvedFunction
         var module = config.get('module');
-        console.log("MODULE CONFIG: " + module);
+        console.log('MODULE CONFIG: ', module);
     }
     return ModuleController;
 }());
