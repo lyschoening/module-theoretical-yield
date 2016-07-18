@@ -1,5 +1,7 @@
 "use strict";
 var angular_1 = require('angular');
+// Turn of WS TS inspection for the 'decaf-common' import.
+// noinspection TypeScriptCheckImport
 var decaf_common_1 = require('decaf-common');
 require('./module.css!');
 exports.MODULE_NAME = 'example';
