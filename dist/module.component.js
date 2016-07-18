@@ -36,6 +36,10 @@ app.config(function ($stateProvider) {
 });
 var ModuleController = (function () {
     function ModuleController(config) {
+        // Turn of WS inspection for TS
+        // noinspection TypeScriptUnresolvedFunction
+        var module = config.get('module');
+        console.log("MODULE CONFIG: " + module);
     }
     return ModuleController;
 }());

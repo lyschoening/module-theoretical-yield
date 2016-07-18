@@ -40,7 +40,13 @@ app.config(function ($stateProvider) {
 
 
 class ModuleController {
-	constructor(config: Config) {}
+	constructor(config: Config) {
+		// Turn of WS inspection for TS
+		// noinspection TypeScriptUnresolvedFunction
+		let module = config.get('module');
+
+		console.log(`MODULE CONFIG: ${module}`);
+	}
 }
 
 export default app;
