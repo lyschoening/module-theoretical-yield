@@ -21,14 +21,21 @@ app.config(function ($stateProvider) {
         },
         data: {
             module: exports.MODULE_NAME
+        },
+        onEnter: function (config) {
+            // Turn of WS inspection for TS
+            // noinspection TypeScriptUnresolvedFunction
+            config.set('color', 'yellow');
+        },
+        onExit: function (config) {
+            // Turn of WS inspection for TS
+            // noinspection TypeScriptUnresolvedFunction
+            config.set('color', null);
         }
     });
 });
 var ModuleController = (function () {
     function ModuleController(config) {
-        // Turn of WS inspection for TS
-        // noinspection TypeScriptUnresolvedFunction
-        config.set('color', 'yellow');
     }
     return ModuleController;
 }());

@@ -24,17 +24,23 @@ app.config(function ($stateProvider) {
 		},
 		data: {
 			module: MODULE_NAME
+		},
+		onEnter(config: Config) {
+			// Turn of WS inspection for TS
+			// noinspection TypeScriptUnresolvedFunction
+			config.set('color', 'yellow');
+		},
+		onExit(config: Config) {
+			// Turn of WS inspection for TS
+			// noinspection TypeScriptUnresolvedFunction
+			config.set('color', null);
 		}
 	});
 });
 
 
 class ModuleController {
-	constructor(config: Config) {
-		// Turn of WS inspection for TS
-		// noinspection TypeScriptUnresolvedFunction
-		config.set('color', 'yellow');
-	}
+	constructor(config: Config) {}
 }
 
 export default app;
