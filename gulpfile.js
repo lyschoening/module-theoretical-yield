@@ -171,28 +171,6 @@ gulp.task('build/js', function () {
 			match: '**/*.js'
 		}));
 
-	let lib = gulp
-		.src([].concat(PATHS.typings, [
-			'lib/**/*.ts'
-		]), {
-			base: './'
-		})
-		.pipe(changed(PATHS.dist, {
-			extension: '.js'
-		}))
-		.pipe(plumber())
-		.pipe(sourcemaps.init())
-		.pipe(typescript(typescript.createProject('tsconfig.json', {
-			typescript: require('typescript')
-		})))
-		.js
-		.pipe(sourcemaps.write('.'))
-		.pipe(size(GULP_SIZE_DEFAULT_CONFIG))
-		.pipe(gulp.dest(PATHS.dist))
-		.pipe(bs.stream({
-			match: '**/*.js'
-		}));
-
 	let src = gulp
 		.src([].concat(PATHS.typings, PATHS.src.ts), {
 			base: './src'
@@ -213,7 +191,7 @@ gulp.task('build/js', function () {
 			match: '**/*.js'
 		}));
 
-	return merge(main, lib, src);
+	return merge(main, src);
 });
 
 
