@@ -45,7 +45,7 @@ class ModuleController {
 		// noinspection TypeScriptUnresolvedFunction
 		let module = config.get('module');
 
-		console.log('MODULE CONFIG: ', module);
+		console.info('MODULE CONFIG: ', module);
 	}
 }
 
