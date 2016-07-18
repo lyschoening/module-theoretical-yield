@@ -6,7 +6,7 @@ import {
 import 'angular-material';
 import 'angular-ui-router';
 import {API_HOST, API_PREFIX} from './bootstrap.config';
-import {MODULE_NAME} from 'src/module';
+import {MODULE_NAME} from 'src/module.component';
 import config from 'lib/common/config';
 
 
