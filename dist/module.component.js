@@ -25,8 +25,10 @@ app.config(function ($stateProvider) {
     });
 });
 var ModuleController = (function () {
-    function ModuleController(modulesConfig) {
-        console.log(modulesConfig);
+    function ModuleController(config) {
+        // Turn of WS inspection for TS
+        // noinspection TypeScriptUnresolvedFunction
+        config.set('color', 'yellow');
     }
     return ModuleController;
 }());

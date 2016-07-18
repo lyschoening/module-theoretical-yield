@@ -5,9 +5,11 @@ import {
 } from 'angular';
 import 'angular-material';
 import 'angular-ui-router';
+// Turn of WS TS inspection for the 'decaf-common' import.
+// noinspection TypeScriptCheckImport
+import {config} from 'decaf-common';
 import {API_HOST, API_PREFIX} from './bootstrap.config';
 import {MODULE_NAME} from 'src/module.component';
-import config from 'lib/common/config';
 
 
 const app = module('app', [
@@ -17,7 +19,7 @@ const app = module('app', [
 	'ngMaterial',
 	// 3rd Party
 	'ui.router',
-	// Libs
+	// Common
 	config.name,
 	// Module
 	MODULE_NAME

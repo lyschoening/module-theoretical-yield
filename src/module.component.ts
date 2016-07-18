@@ -1,7 +1,7 @@
 import {module as ngModule} from 'angular';
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
-import {dirname} from 'decaf-common';
+import {dirname, Config} from 'decaf-common';
 import './module.css!';
 
 
@@ -30,8 +30,10 @@ app.config(function ($stateProvider) {
 
 
 class ModuleController {
-	constructor(modulesConfig) {
-		console.log(modulesConfig);
+	constructor(config: Config) {
+		// Turn of WS inspection for TS
+		// noinspection TypeScriptUnresolvedFunction
+		config.set('color', 'yellow');
 	}
 }
 
