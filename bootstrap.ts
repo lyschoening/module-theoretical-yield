@@ -7,7 +7,7 @@ import 'angular-material';
 import 'angular-ui-router';
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
-import {config} from 'decaf-common';
+import {sharing, config} from 'decaf-common';
 import {API_HOST, API_PREFIX} from './bootstrap.config';
 import {MODULE_NAME} from 'src/module.component';
 
@@ -21,6 +21,7 @@ const app = module('app', [
 	'ui.router',
 	// Common
 	config.name,
+	sharing.name,
 	// Module
 	MODULE_NAME
 ]);
