@@ -7,7 +7,8 @@ require('./module.css!');
 exports.MODULE_NAME = 'example';
 var app = angular_1.module(exports.MODULE_NAME, []);
 app.config(function ($stateProvider) {
-    $stateProvider.state("root." + exports.MODULE_NAME, {
+    $stateProvider
+        .state("root." + exports.MODULE_NAME, {
         url: "/" + exports.MODULE_NAME,
         views: {
             'content@': {
@@ -17,6 +18,11 @@ app.config(function ($stateProvider) {
             },
             'toolbar@': {
                 templateUrl: decaf_common_1.dirname(module.id) + "/toolbar.tpl.html"
+            },
+            'navigation@': {
+                templateUrl: decaf_common_1.dirname(module.id) + "/nav.tpl.html",
+                controller: ModuleNavController,
+                controllerAs: 'nav'
             }
         },
         data: {
@@ -25,12 +31,20 @@ app.config(function ($stateProvider) {
         onEnter: function (config) {
             // Turn of WS inspection for TS
             // noinspection TypeScriptUnresolvedFunction
-            config.set('color', 'yellow');
+            config.set('color', '#ff5200');
         },
         onExit: function (config) {
             // Turn of WS inspection for TS
             // noinspection TypeScriptUnresolvedFunction
             config.set('color', null);
+        }
+    })
+        .state("root." + exports.MODULE_NAME + ".test", {
+        url: '/test',
+        views: {
+            'content@': {
+                templateUrl: decaf_common_1.dirname(module.id) + "/test.html",
+            }
         }
     });
 });
@@ -42,6 +56,12 @@ var ModuleController = (function () {
         console.info('MODULE CONFIG: ', module);
     }
     return ModuleController;
+}());
+var ModuleNavController = (function () {
+    function ModuleNavController() {
+        this.name = exports.MODULE_NAME;
+    }
+    return ModuleNavController;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = app;

@@ -10,6 +10,12 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<style type="text/css">
+			/* https://github.com/angular/material/issues/5608 */
+			md-list-item a.md-button {
+				font-weight: normal;
+				margin: 0;
+			}
+
 			[ng\:cloak],
 			[ng-cloak],
 			[data-ng-cloak],
@@ -22,7 +28,9 @@
 	</head>
 	<body layout="column" ng-cloak>
 		<app layout="column" flex>
-			<app-header>Example</app-header>
+			<app-toolbar>
+				App toolbar from index.html
+			</app-toolbar>
 		</app>
 
 		<!-- ES6/Polyfills -->
