@@ -6,12 +6,13 @@ SystemJS.config({
 	browserConfig: {
 		"baseURL": "/",
 		"paths": {
-			"src/": ""
+			"src": "./"
 		}
 	},
 	packages: {
 		"src": {
-			"defaultExtension": "js"
+			"defaultExtension": "js",
+			"main": "./index.js"
 		}
 	}
 });

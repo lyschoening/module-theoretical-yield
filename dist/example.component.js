@@ -3,30 +3,30 @@ var angular_1 = require('angular');
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
 var decaf_common_1 = require('decaf-common');
-require('./module.css!');
-exports.MODULE_NAME = 'example';
-var app = angular_1.module(exports.MODULE_NAME, []);
-app.config(function ($stateProvider) {
+require('./example.component.css!');
+exports.COMPONENT_NAME = 'example';
+var example = angular_1.module(exports.COMPONENT_NAME, []);
+example.config(function ($stateProvider) {
     $stateProvider
-        .state("root." + exports.MODULE_NAME, {
-        url: "/" + exports.MODULE_NAME,
+        .state("root." + exports.COMPONENT_NAME, {
+        url: "/" + exports.COMPONENT_NAME,
         views: {
             'content@': {
-                templateUrl: decaf_common_1.dirname(module.id) + "/module.html",
-                controller: ModuleController,
-                controllerAs: 'module'
+                templateUrl: decaf_common_1.dirname(module.id) + "/example.component.html",
+                controller: ExampleComponentController,
+                controllerAs: 'example'
             },
             'toolbar@': {
                 templateUrl: decaf_common_1.dirname(module.id) + "/toolbar.tpl.html"
             },
             'navigation@': {
                 templateUrl: decaf_common_1.dirname(module.id) + "/nav.tpl.html",
-                controller: ModuleNavController,
+                controller: ExampleComponentNavController,
                 controllerAs: 'nav'
             }
         },
         data: {
-            module: exports.MODULE_NAME
+            component: exports.COMPONENT_NAME
         },
         onEnter: function (config) {
             // Turn of WS inspection for TS
@@ -39,7 +39,7 @@ app.config(function ($stateProvider) {
             config.set('color', null);
         }
     })
-        .state("root." + exports.MODULE_NAME + ".test", {
+        .state("root." + exports.COMPONENT_NAME + ".test", {
         url: '/test',
         views: {
             'content@': {
@@ -48,22 +48,22 @@ app.config(function ($stateProvider) {
         }
     });
 });
-var ModuleController = (function () {
-    function ModuleController(config) {
+var ExampleComponentController = (function () {
+    function ExampleComponentController(config) {
         // Turn of WS inspection for TS
         // noinspection TypeScriptUnresolvedFunction
-        var module = config.get('module');
-        console.info('MODULE CONFIG: ', module);
+        var component = config.get('component');
+        console.info('COMPONENT CONFIG: ', component);
     }
-    return ModuleController;
+    return ExampleComponentController;
 }());
-var ModuleNavController = (function () {
-    function ModuleNavController() {
-        this.name = exports.MODULE_NAME;
+var ExampleComponentNavController = (function () {
+    function ExampleComponentNavController() {
+        this.name = exports.COMPONENT_NAME;
     }
-    return ModuleNavController;
+    return ExampleComponentNavController;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = app;
+exports.default = example;
 
-//# sourceMappingURL=module.component.js.map
+//# sourceMappingURL=example.component.js.map

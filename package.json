@@ -9,7 +9,7 @@
         "name": "Roland Groza",
         "email": "rolandjitsu@gmail.com"
     },
-    "main": "./dist/module.component.js",
+    "main": "./dist/index.js",
     "repository": {
         "type": "git",
         "url": ""
@@ -41,7 +41,7 @@
         "node": ">= 6.3"
     },
     "jspm": {
-        "main": "./dist/module.component.js",
+        "main": "./dist/index.js",
         "dependencies": {
             "angular-material": "github:angular/bower-material@^1.0.9",
             "css": "github:systemjs/plugin-css@^0.1.23",

@@ -1,5 +1,5 @@
 # Decaf Frontend Module
-> Decaf frontend module example project.
+> Decaf frontend component example project.
 
 ### Setup
 ---------
@@ -10,7 +10,7 @@ Install deps:
 
 Run the app with `$(npm bin)/gulp serve`.
 
-If you wish to build the module, use `$(npm bin)/gulp build/module`.
+If you wish to build the component, use `$(npm bin)/gulp build/component`.
 
 To lint the source files, use `$(npm bin)/gulp lint`.
 

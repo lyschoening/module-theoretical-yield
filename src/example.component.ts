@@ -2,34 +2,34 @@ import {module as ngModule} from 'angular';
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
 import {dirname, Config} from 'decaf-common';
-import './module.css!';
+import './example.component.css!';
 
 
-export const MODULE_NAME = 'example';
-const app = ngModule(MODULE_NAME, []);
+export const COMPONENT_NAME = 'example';
+const example = ngModule(COMPONENT_NAME, []);
 
 
-app.config(function ($stateProvider) {
+example.config(function ($stateProvider) {
 	$stateProvider
-		.state(`root.${MODULE_NAME}`, {
-			url: `/${MODULE_NAME}`,
+		.state(`root.${COMPONENT_NAME}`, {
+			url: `/${COMPONENT_NAME}`,
 			views: {
 				'content@': {
-					templateUrl: `${dirname(module.id)}/module.html`,
-					controller: ModuleController,
-					controllerAs: 'module'
+					templateUrl: `${dirname(module.id)}/example.component.html`,
+					controller: ExampleComponentController,
+					controllerAs: 'example'
 				},
 				'toolbar@': {
 					templateUrl: `${dirname(module.id)}/toolbar.tpl.html`
 				},
 				'navigation@': {
 					templateUrl: `${dirname(module.id)}/nav.tpl.html`,
-					controller: ModuleNavController,
+					controller: ExampleComponentNavController,
 					controllerAs: 'nav'
 				}
 			},
 			data: {
-				module: MODULE_NAME
+				component: COMPONENT_NAME
 			},
 			onEnter(config: Config) {
 				// Turn of WS inspection for TS
@@ -42,7 +42,7 @@ app.config(function ($stateProvider) {
 				config.set('color', null);
 			}
 		})
-		.state(`root.${MODULE_NAME}.test`, {
+		.state(`root.${COMPONENT_NAME}.test`, {
 			url: '/test',
 			views: {
 				'content@': {
@@ -53,18 +53,18 @@ app.config(function ($stateProvider) {
 });
 
 
-class ModuleController {
+class ExampleComponentController {
 	constructor(config: Config) {
 		// Turn of WS inspection for TS
 		// noinspection TypeScriptUnresolvedFunction
-		let module = config.get('module');
+		let component = config.get('component');
 
-		console.info('MODULE CONFIG: ', module);
+		console.info('COMPONENT CONFIG: ', component);
 	}
 }
 
-class ModuleNavController {
-	name = MODULE_NAME
+class ExampleComponentNavController {
+	name = COMPONENT_NAME
 }
 
-export default app;
+export default example;

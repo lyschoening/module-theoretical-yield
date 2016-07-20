@@ -219,7 +219,7 @@ gulp.task('build/css', function () {
 /**
  * App builds
  */
-gulp.task('build/module', gulp.parallel(
+gulp.task('build/component', gulp.parallel(
 	'build/static',
 	'build/html',
 	'build/js',
@@ -232,7 +232,7 @@ gulp.task('build/module', gulp.parallel(
  */
 gulp.task('build', gulp.series(
 	'build/deps',
-	'build/module'
+	'build/component'
 ));
 
 
