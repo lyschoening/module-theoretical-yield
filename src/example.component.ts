@@ -10,7 +10,7 @@ const example = angular.module(COMPONENT_NAME, []);
 
 example.config(function (platformProvider) {
 	platformProvider
-		.register(COMPONENT_NAME)
+		.register(COMPONENT_NAME, {})
 		.state(COMPONENT_NAME, {
 			url: `/${COMPONENT_NAME}`,
 			views: {
