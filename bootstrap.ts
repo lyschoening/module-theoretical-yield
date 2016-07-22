@@ -64,7 +64,7 @@ class AppController {
 	constructor($window, private config: Config) {
 		$window.document.title = `Platform – Component({name: ${main.name}})`;
 		// noinspection TypeScriptUnresolvedFunction
-		config.set('component', {});
+		config.set('componentConfig', {});
 	}
 
 	// Update color from config

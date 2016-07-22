@@ -54,7 +54,7 @@ class ExampleComponentController {
 	constructor(config: Config) {
 		// Turn of WS inspection for TS
 		// noinspection TypeScriptUnresolvedFunction
-		let component = config.get('component');
+		let component = config.get('componentConfig');
 
 		console.info('COMPONENT CONFIG: ', component);
 	}

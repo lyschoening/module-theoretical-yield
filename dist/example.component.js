@@ -49,7 +49,7 @@ var ExampleComponentController = (function () {
     function ExampleComponentController(config) {
         // Turn of WS inspection for TS
         // noinspection TypeScriptUnresolvedFunction
-        var component = config.get('component');
+        var component = config.get('componentConfig');
         console.info('COMPONENT CONFIG: ', component);
     }
     return ExampleComponentController;
