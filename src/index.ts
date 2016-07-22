@@ -4,4 +4,6 @@
 // Change `'./example.component'` to where ever your component resides (of course within the source folder).
 export * from './example.component';
 import main from './example.component';
+
+// NOTE: NEVER remove the line below
 export default main;
