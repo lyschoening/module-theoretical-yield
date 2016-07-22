@@ -1,8 +1,7 @@
-import {
-	bootstrap,
-	module as ngModule,
-	element
-} from 'angular';
+// Never remove this import of `angular` from here.
+// NOTE: the import form angular also makes the `angular` namespace available globally
+import 'angular';
+
 import 'angular-material';
 import 'angular-ui-router';
 // Turn of WS TS inspection for the 'decaf-common' import.
@@ -12,7 +11,7 @@ import {API_HOST, API_PREFIX} from './bootstrap.config';
 import main from 'src';
 
 
-const app = ngModule('app', [
+const app = angular.module('app', [
 	// Angular
 	'ngAnimate',
 	'ngAria',
@@ -25,6 +24,13 @@ const app = ngModule('app', [
 	// Component
 	main.name
 ]);
+
+
+// Production config
+app.config(function ($httpProvider) {
+	// http://blog.thoughtram.io/angularjs/2015/01/14/exploring-angular-1.3-speed-up-with-applyAsync.html
+	$httpProvider.useApplyAsync(true);
+});
 
 
 // AM theme config
@@ -106,8 +112,10 @@ app.component('app', {
 
 
 // Bootstrap
-element(document).ready(() => {
-	bootstrap(document.documentElement, [app.name], {
+angular.element(document).ready(() => {
+	angular.bootstrap(document.documentElement, [app.name], {
+		// Do not enable strict DI.
+		// NOTE: If we use `{strictDi: true}` we will not be able to use DI with ES6 classes
 		strictDi: false
 	});
 });

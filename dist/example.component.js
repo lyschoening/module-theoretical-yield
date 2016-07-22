@@ -1,11 +1,10 @@
 "use strict";
-var angular_1 = require('angular');
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
 var decaf_common_1 = require('decaf-common');
 require('./example.component.css!');
 exports.COMPONENT_NAME = 'example';
-var example = angular_1.module(exports.COMPONENT_NAME, []);
+var example = angular.module(exports.COMPONENT_NAME, []);
 example.config(function ($stateProvider) {
     $stateProvider
         .state("root." + exports.COMPONENT_NAME, {

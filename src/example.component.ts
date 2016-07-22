@@ -1,4 +1,3 @@
-import {module as ngModule} from 'angular';
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
 import {dirname, Config} from 'decaf-common';
@@ -6,7 +5,7 @@ import './example.component.css!';
 
 
 export const COMPONENT_NAME = 'example';
-const example = ngModule(COMPONENT_NAME, []);
+const example = angular.module(COMPONENT_NAME, []);
 
 
 example.config(function ($stateProvider) {
