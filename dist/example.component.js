@@ -5,9 +5,10 @@ var decaf_common_1 = require('decaf-common');
 require('./example.component.css!');
 exports.COMPONENT_NAME = 'example';
 var example = angular.module(exports.COMPONENT_NAME, []);
-example.config(function ($stateProvider) {
-    $stateProvider
-        .state("root." + exports.COMPONENT_NAME, {
+example.config(function (platformProvider) {
+    platformProvider
+        .register(exports.COMPONENT_NAME)
+        .state(exports.COMPONENT_NAME, {
         url: "/" + exports.COMPONENT_NAME,
         views: {
             'content@': {
@@ -24,9 +25,6 @@ example.config(function ($stateProvider) {
                 controllerAs: 'nav'
             }
         },
-        data: {
-            component: exports.COMPONENT_NAME
-        },
         onEnter: function (config) {
             // Turn of WS inspection for TS
             // noinspection TypeScriptUnresolvedFunction
@@ -38,7 +36,7 @@ example.config(function ($stateProvider) {
             config.set('color', null);
         }
     })
-        .state("root." + exports.COMPONENT_NAME + ".test", {
+        .state(exports.COMPONENT_NAME + ".test", {
         url: '/test',
         views: {
             'content@': {

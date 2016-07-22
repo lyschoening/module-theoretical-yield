@@ -1,6 +1,6 @@
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
-import {dirname, Config} from 'decaf-common';
+import {Config, dirname} from 'decaf-common';
 import './example.component.css!';
 
 
@@ -8,9 +8,10 @@ export const COMPONENT_NAME = 'example';
 const example = angular.module(COMPONENT_NAME, []);
 
 
-example.config(function ($stateProvider) {
-	$stateProvider
-		.state(`root.${COMPONENT_NAME}`, {
+example.config(function (platformProvider) {
+	platformProvider
+		.register(COMPONENT_NAME)
+		.state(COMPONENT_NAME, {
 			url: `/${COMPONENT_NAME}`,
 			views: {
 				'content@': {
@@ -27,9 +28,6 @@ example.config(function ($stateProvider) {
 					controllerAs: 'nav'
 				}
 			},
-			data: {
-				component: COMPONENT_NAME
-			},
 			onEnter(config: Config) {
 				// Turn of WS inspection for TS
 				// noinspection TypeScriptUnresolvedFunction
@@ -41,7 +39,7 @@ example.config(function ($stateProvider) {
 				config.set('color', null);
 			}
 		})
-		.state(`root.${COMPONENT_NAME}.test`, {
+		.state(`${COMPONENT_NAME}.test`, {
 			url: '/test',
 			views: {
 				'content@': {
