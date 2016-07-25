@@ -16,11 +16,15 @@ Install dev and runtime dependencies:
 ---------
 If you successfully setup the project using the steps above, you can run the app with `$(npm bin)/gulp serve`.
 
-This is a component based app, so the sidebar navigation and the the app routes are generated from the `components.config.json` file at the root of the project.
-
-**NOTE**: [JSPM](http://jspm.io/0.17-beta-guide/index.html) is used as package manager and for installing the components as well. 
+**NOTE**: [JSPM](http://jspm.io/0.17-beta-guide/index.html) is used as package manager and for installing the components itself as well. 
 
 You should only be working in the `src/` folder of the component and you should never remove `index.ts` unless you know what your're doing.
+But make sure to rename the `example.component.ts|css|html` with your own component name (e.g. `hero.component.ts|css|html`).
+After you renamed it, make sure to update the component path/name in the `index.ts` file:
+```js
+export * from './<component name>.component';
+import main from './<component name>.component';
+```
 
 Furthermore, make sure you export the angular module as default from your component (name does not matter):
 ```js
@@ -33,7 +37,7 @@ const myComponent = angular.module(COMPONENT_NAME, []);
 
 myComponent.config(function (platformProvider) {
 	platformProvider
-		.register(COMPONENT_NAME, {isProjectType: true})
+		.register(COMPONENT_NAME)
 		.state(COMPONENT_NAME, {
 			url: `/${COMPONENT_NAME}`,
 			views: {
@@ -57,7 +61,6 @@ export default myComponent;
 
 In the above example, there are a few things that are important:
 * `platformProvider.register(COMPONENT_NAME, {isProjectType: true})` - This is a mandatory action. You use that to register a component.
-* `{isProjectType: true}` - You can use the second argument to configure the component, in this case it will tell the platform that this is a project component.
 Note that you still need to specify the same `isProjectType` property in `components.config.json`.
 * `dirname(module.id)` - This is just a helper to get the path for where the component resides, you should always use it.
 * `platformProvider.state()` - This sets the states/routes for the component.
