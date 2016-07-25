@@ -31,7 +31,7 @@ Furthermore, make sure you export the angular module as default from your compon
 // src/my-component.component.ts
 import {dirname} from 'decaf-common';
 
-export const COMPONENT_NAME = 'project-example';
+export const COMPONENT_NAME = 'example';
 const myComponent = angular.module(COMPONENT_NAME, []);
 
 
