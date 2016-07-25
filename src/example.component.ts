@@ -10,7 +10,12 @@ const example = angular.module(COMPONENT_NAME, []);
 // TODO: we need to make it so the module name and the .register() are decoupled and not dependant on each other
 example.config(function (platformProvider) {
 	platformProvider
-		.register(COMPONENT_NAME)
+		.register(COMPONENT_NAME, {
+			sharing: {
+				accept: [{type: 'data', multiple: true}],
+				name: 'Example Component'
+			}
+		})
 		.state(COMPONENT_NAME, {
 			url: `/${COMPONENT_NAME}`,
 			views: {
@@ -51,12 +56,15 @@ example.config(function (platformProvider) {
 
 
 class ExampleComponentController {
-	constructor(config: Config) {
+	constructor(config: Config, sharing) {
 		// Turn of WS inspection for TS
 		// noinspection TypeScriptUnresolvedFunction
 		let component = config.get('componentConfig');
-
 		console.info('COMPONENT CONFIG: ', component);
+
+		// Data from the sharing provider
+		let data = sharing.items('data');
+		console.info('SHARED DATA: ', data);
 	}
 }
 

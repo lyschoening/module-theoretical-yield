@@ -5,9 +5,15 @@ var decaf_common_1 = require('decaf-common');
 require('./example.component.css!');
 exports.COMPONENT_NAME = 'example';
 var example = angular.module(exports.COMPONENT_NAME, []);
+// TODO: we need to make it so the module name and the .register() are decoupled and not dependant on each other
 example.config(function (platformProvider) {
     platformProvider
-        .register(exports.COMPONENT_NAME)
+        .register(exports.COMPONENT_NAME, {
+        sharing: {
+            accept: [{ type: 'data', multiple: true }],
+            name: 'Example Component'
+        }
+    })
         .state(exports.COMPONENT_NAME, {
         url: "/" + exports.COMPONENT_NAME,
         views: {
@@ -46,11 +52,14 @@ example.config(function (platformProvider) {
     });
 });
 var ExampleComponentController = (function () {
-    function ExampleComponentController(config) {
+    function ExampleComponentController(config, sharing) {
         // Turn of WS inspection for TS
         // noinspection TypeScriptUnresolvedFunction
         var component = config.get('componentConfig');
         console.info('COMPONENT CONFIG: ', component);
+        // Data from the sharing provider
+        var data = sharing.items('data');
+        console.info('SHARED DATA: ', data);
     }
     return ExampleComponentController;
 }());
