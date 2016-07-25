@@ -60,7 +60,7 @@ export default myComponent;
 ```
 
 In the above example, there are a few things that are important:
-* `platformProvider.register(COMPONENT_NAME, {isProjectType: true})` - This is a mandatory action. You use that to register a component.
+* `platformProvider.register(COMPONENT_NAME)` - This is a mandatory action. You use that to register a component.
 Note that you still need to specify the same `isProjectType` property in `components.config.json`.
 * `dirname(module.id)` - This is just a helper to get the path for where the component resides, you should always use it.
 * `platformProvider.state()` - This sets the states/routes for the component.
