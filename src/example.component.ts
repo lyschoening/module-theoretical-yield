@@ -7,7 +7,7 @@ import './example.component.css!';
 export const COMPONENT_NAME = 'example';
 const example = angular.module(COMPONENT_NAME, []);
 
-
+// TODO: we need to make it so the module name and the .register() are decoupled and not dependant on each other
 example.config(function (platformProvider) {
 	platformProvider
 		.register(COMPONENT_NAME)
