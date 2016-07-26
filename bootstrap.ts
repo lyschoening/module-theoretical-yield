@@ -63,7 +63,7 @@ app.config(function ($urlMatcherFactoryProvider, $urlRouterProvider, $stateProvi
 class AppController {
 	isSidebarVisible = true;
 
-	constructor($window, $scope, $state, private config: Config) {
+	constructor($window, $scope, private config: Config) {
 		$window.document.title = `Platform – Component({name: ${main.name}})`;
 		// noinspection TypeScriptUnresolvedFunction
 		config.set('componentConfig', {});
