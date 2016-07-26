@@ -46,7 +46,7 @@ example.config(function (platformProvider) {
         url: '/test',
         views: {
             'content@': {
-                templateUrl: decaf_common_1.dirname(module.id) + "/test.html",
+                templateUrl: decaf_common_1.dirname(module.id) + "/test.html"
             }
         }
     });

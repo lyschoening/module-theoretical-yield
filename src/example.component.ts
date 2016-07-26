@@ -48,7 +48,7 @@ example.config(function (platformProvider) {
 			url: '/test',
 			views: {
 				'content@': {
-					templateUrl: `${dirname(module.id)}/test.html`,
+					templateUrl: `${dirname(module.id)}/test.html`
 				}
 			}
 		});
@@ -69,7 +69,7 @@ class ExampleComponentController {
 }
 
 class ExampleComponentNavController {
-	name = COMPONENT_NAME
+	name = COMPONENT_NAME;
 }
 
 export default example;
