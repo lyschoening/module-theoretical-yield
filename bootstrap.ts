@@ -61,10 +61,19 @@ app.config(function ($urlMatcherFactoryProvider, $urlRouterProvider, $stateProvi
 
 // Main component
 class AppController {
-	constructor($window, private config: Config) {
+	isSidebarVisible = true;
+
+	constructor($window, $scope, $state, private config: Config) {
 		$window.document.title = `Platform – Component({name: ${main.name}})`;
 		// noinspection TypeScriptUnresolvedFunction
 		config.set('componentConfig', {});
+
+		// Hide sidebar if there is no navigation set from the component.
+		$scope.$on('$stateChangeStart', (toState, toParams) => {
+			if (!toParams || !toParams.hasOwnProperty('views') || !toParams.views.hasOwnProperty('navigation@')) {
+				this.isSidebarVisible = false;
+			}
+		});
 	}
 
 	// Update color from config
@@ -89,7 +98,7 @@ app.component('app', {
 	},
 	template: `
 		<div layout="row" flex ui-view="root">
-			<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+			<md-sidenav ng-if="app.isSidebarVisible" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 				<div ng-transclude="navigation"></div>
 				<div ui-view="navigation"></div>
 			</md-sidenav>
