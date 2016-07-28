@@ -12,7 +12,7 @@ example.config(function (platformProvider) {
 	platformProvider
 		.register(COMPONENT_NAME, {
 			sharing: {
-				accept: [{type: 'data', multiple: true}],
+				accept: [{type: 'money', multiple: true}],
 				name: 'Example Component'
 			}
 		})
@@ -65,8 +65,8 @@ class ExampleComponentController {
 		console.info('COMPONENT CONFIG: ', component);
 
 		// Data from the sharing provider
-		let data = sharing.items('data');
-		console.info('SHARED DATA: ', data);
+		let money = sharing.items('money');
+		console.info('GOT MONEY: ', money);
 	}
 }
 
@@ -83,7 +83,7 @@ class ExampleComponentToolbarController {
 
 	constructor($scope, sharing) {
 		sharing.provide($scope, {
-			data: 'toolbar.salads'
+			food: 'toolbar.salads'
 		});
 	}
 }
