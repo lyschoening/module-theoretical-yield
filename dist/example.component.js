@@ -23,7 +23,9 @@ example.config(function (platformProvider) {
                 controllerAs: 'example'
             },
             'toolbar@': {
-                templateUrl: decaf_common_1.dirname(module.id) + "/toolbar.tpl.html"
+                templateUrl: decaf_common_1.dirname(module.id) + "/toolbar.tpl.html",
+                controller: ExampleComponentToolbarController,
+                controllerAs: 'toolbar'
             },
             'navigation@': {
                 templateUrl: decaf_common_1.dirname(module.id) + "/nav.tpl.html",
@@ -68,6 +70,22 @@ var ExampleComponentNavController = (function () {
         this.name = exports.COMPONENT_NAME;
     }
     return ExampleComponentNavController;
+}());
+var ExampleComponentToolbarController = (function () {
+    function ExampleComponentToolbarController($scope, sharing) {
+        var _this = this;
+        this.salads = [{
+                lettuce: 10
+            }];
+        // Listen for share changes
+        $scope.$on('share-change', function (event, targets) {
+            _this.targets = { targets: targets };
+        });
+        sharing.provide($scope, {
+            data: 'toolbar.salads'
+        });
+    }
+    return ExampleComponentToolbarController;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = example;

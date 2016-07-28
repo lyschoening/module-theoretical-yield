@@ -25,7 +25,9 @@ example.config(function (platformProvider) {
 					controllerAs: 'example'
 				},
 				'toolbar@': {
-					templateUrl: `${dirname(module.id)}/toolbar.tpl.html`
+					templateUrl: `${dirname(module.id)}/toolbar.tpl.html`,
+					controller: ExampleComponentToolbarController,
+					controllerAs: 'toolbar'
 				},
 				'navigation@': {
 					templateUrl: `${dirname(module.id)}/nav.tpl.html`,
@@ -70,6 +72,25 @@ class ExampleComponentController {
 
 class ExampleComponentNavController {
 	name = COMPONENT_NAME;
+}
+
+class ExampleComponentToolbarController {
+	targets: any;
+
+	salads: any = [{
+		lettuce: 10
+	}];
+
+	constructor($scope, sharing) {
+		// Listen for share changes
+		$scope.$on('share-change', (event, targets) => {
+			this.targets = {targets};
+		});
+
+		sharing.provide($scope, {
+			data: 'toolbar.salads'
+		});
+	}
 }
 
 export default example;
