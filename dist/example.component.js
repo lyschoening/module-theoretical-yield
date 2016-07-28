@@ -73,14 +73,9 @@ var ExampleComponentNavController = (function () {
 }());
 var ExampleComponentToolbarController = (function () {
     function ExampleComponentToolbarController($scope, sharing) {
-        var _this = this;
         this.salads = [{
                 lettuce: 10
             }];
-        // Listen for share changes
-        $scope.$on('share-change', function (event, targets) {
-            _this.targets = targets;
-        });
         sharing.provide($scope, {
             data: 'toolbar.salads'
         });
