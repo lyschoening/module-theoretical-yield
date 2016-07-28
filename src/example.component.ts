@@ -84,7 +84,7 @@ class ExampleComponentToolbarController {
 	constructor($scope, sharing) {
 		// Listen for share changes
 		$scope.$on('share-change', (event, targets) => {
-			this.targets = {targets};
+			this.targets = targets;
 		});
 
 		sharing.provide($scope, {
