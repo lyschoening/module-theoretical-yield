@@ -79,7 +79,7 @@ var ExampleComponentToolbarController = (function () {
             }];
         // Listen for share changes
         $scope.$on('share-change', function (event, targets) {
-            _this.targets = { targets: targets };
+            _this.targets = targets;
         });
         sharing.provide($scope, {
             data: 'toolbar.salads'
