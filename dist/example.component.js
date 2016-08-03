@@ -2,7 +2,7 @@
 // Turn of WS TS inspection for the 'decaf-common' import.
 // noinspection TypeScriptCheckImport
 var decaf_common_1 = require('decaf-common');
-require('./example.component.css!');
+require('./theoretical-yield.component.css!');
 exports.COMPONENT_NAME = 'example';
 var example = angular.module(exports.COMPONENT_NAME, []);
 // TODO: we need to make it so the module name and the .register() are decoupled and not dependant on each other
@@ -18,7 +18,7 @@ example.config(function (platformProvider) {
         url: "/" + exports.COMPONENT_NAME,
         views: {
             'content@': {
-                templateUrl: decaf_common_1.dirname(module.id) + "/example.component.html",
+                templateUrl: decaf_common_1.dirname(module.id) + "/theoretical-yield.component.html",
                 controller: ExampleComponentController,
                 controllerAs: 'example'
             },
