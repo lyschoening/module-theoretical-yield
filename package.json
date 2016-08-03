@@ -43,7 +43,6 @@
     "jspm": {
         "main": "./dist/index.js",
         "dependencies": {
-            "angular-material": "github:angular/bower-material@^1.0.9",
             "css": "github:systemjs/plugin-css@^0.1.23",
             "decaf-common": "github:biosustain/decaf-frontend-common@master",
             "plotly.js": "npm:plotly.js@^1.15.0"
@@ -51,6 +50,7 @@
         "devDependencies": {},
         "peerDependencies": {
             "angular": "github:angular/bower-angular@^1.5.7",
+            "angular-material": "github:angular/bower-material@^1.0.9",
             "angular-ui-router": "github:angular-ui/angular-ui-router-bower@^0.3.1",
             "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
             "browserify": "npm:browserify",
