@@ -53,7 +53,7 @@
             "angular-material": "github:angular/bower-material@^1.0.9",
             "angular-ui-router": "github:angular-ui/angular-ui-router-bower@^0.3.1",
             "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
-            "browserify": "npm:browserify",
+            "browserify": "npm:browserify@^13.1.0",
             "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
             "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
             "constants": "github:jspm/nodelibs-constants@^0.2.0-alpha",
