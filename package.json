@@ -45,7 +45,7 @@
         "dependencies": {
             "css": "github:systemjs/plugin-css@^0.1.23",
             "decaf-common": "github:biosustain/decaf-frontend-common@master",
-            "plotly.js": "npm:plotly.js@^1.15.0"
+            "plotly.js": "npm:plotly.js@^1.16.2"
         },
         "devDependencies": {},
         "peerDependencies": {
