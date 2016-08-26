@@ -8,19 +8,19 @@ var TheoreticalYieldService = (function () {
     TheoreticalYieldService.prototype.loadExperiments = function () {
         return this.$http({
             method: 'GET',
-            url: constants_1.API_ROOT_URL + "/list/experiment"
+            url: constants_1.API_ROOT_URL + "/model/list/experiment"
         });
     };
     TheoreticalYieldService.prototype.loadSamples = function (experimentId) {
         return this.$http({
             method: 'GET',
-            url: constants_1.API_ROOT_URL + "/list/sample/" + experimentId
+            url: constants_1.API_ROOT_URL + "/model/list/sample/" + experimentId
         });
     };
     TheoreticalYieldService.prototype.sampleYields = function (sampleId) {
         return this.$http({
             method: 'GET',
-            url: constants_1.API_ROOT_URL + "/sample/" + sampleId
+            url: constants_1.API_ROOT_URL + "/maximum-yield/sample/" + sampleId
         });
     };
     return TheoreticalYieldService;
