@@ -97,7 +97,7 @@ var TheoreticalYieldController = (function () {
             _this.data[currentSample] = data.data;
             angular.forEach(_this.data[currentSample], function (phaseYields, phase) {
                 angular.forEach(phaseYields.metabolites, function (metaboliteYield, metabolite) {
-                    _this.plotService.plotPhase('plot_' + phase + '_' + metabolite, metabolite, phaseYields['growth-rate'], metaboliteYield);
+                    // this.$timeout(this.plotService.plotPhase('plot_' + phase + '_' + metabolite, metabolite, phaseYields['growth-rate'], metaboliteYield), 0);
                 });
             });
         });

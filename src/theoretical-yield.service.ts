@@ -12,19 +12,19 @@ export class TheoreticalYieldService {
 	loadExperiments() {
 		return this.$http({
 			method: 'GET',
-			url: `${API_ROOT_URL}/model/list/experiment`
+			url: `${API_ROOT_URL}/experiments`
 		});
 	}
 	loadSamples(experimentId) {
 		return this.$http({
 			method: 'GET',
-			url: `${API_ROOT_URL}/model/list/sample/${experimentId}`
+			url: `${API_ROOT_URL}/experiments/${experimentId}/samples`
 		});
 	}
 	sampleYields(sampleId) {
 		return this.$http({
 			method: 'GET',
-			url: `${API_ROOT_URL}/maximum-yield/sample/${sampleId}`
+			url: `${API_ROOT_URL}/samples/${sampleId}/maximum-yield`
 		});
 	}
 }

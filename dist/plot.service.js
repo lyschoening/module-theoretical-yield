@@ -6,6 +6,7 @@ var PlotService = (function () {
     }
     PlotService.prototype.plotPhase = function (domId, metabolite, growthRate, theoreticalYields) {
         var strains = { 'wild': 'rgb(205, 12, 24)', 'modified': 'rgb(22, 96, 167)' };
+        console.log(theoreticalYields);
         var point = {
             x: growthRate,
             y: [theoreticalYields.flux],
@@ -17,20 +18,7 @@ var PlotService = (function () {
         var data = [point];
         var currentKey = null;
         angular.forEach(strains, function (color, strainKey) {
-            var points = {
-                'objective_lower_bound': [],
-                'objective_upper_bound': [],
-            };
-            // The parser for backend data which would not be required after it would be proceeded on the backend side
-            angular.forEach(theoreticalYields['phase-planes'][strainKey], function (value, key) {
-                if (!(key in points)) {
-                    points[key] = [];
-                    currentKey = key;
-                }
-                angular.forEach(theoreticalYields['phase-planes'][strainKey][key], function (value, key) {
-                    this.push(value);
-                }, points[key]);
-            });
+            var points = theoreticalYields['phase-planes'][strainKey];
             var keys = ['objective_lower_bound', 'objective_upper_bound'];
             for (var ind in keys) {
                 this.push({
