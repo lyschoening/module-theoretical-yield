@@ -112,7 +112,8 @@ class TheoreticalYieldController {
 				this.data[currentSample] = data.data;
 				angular.forEach(this.data[currentSample], (phaseYields, phase) => {
 					angular.forEach(phaseYields.metabolites, (metaboliteYield, metabolite) => {
-						// this.$timeout(this.plotService.plotPhase('plot_' + phase + '_' + metabolite, metabolite, phaseYields['growth-rate'], metaboliteYield), 0);
+						var id = 'plot_' + phase + '_' + metabolite;
+						angular.element(document.getElementById(id)).ready(() => this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield));
 					});
 				});
 			});

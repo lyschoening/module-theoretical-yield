@@ -7,8 +7,7 @@ export class PlotService {
 	}
 
 	plotPhase(domId, metabolite, growthRate, theoreticalYields) {
-		var strains = {'wild': 'rgb(205, 12, 24)', 'modified': 'rgb(22, 96, 167)'};
-		console.log(theoreticalYields);
+		var strains = {'wild': 'rgb(22, 96, 167)', 'modified': 'rgb(205, 12, 24)'};
 		var point = {
 			x: growthRate,
 			y: [theoreticalYields.flux],
@@ -24,10 +23,14 @@ export class PlotService {
 
 		angular.forEach(strains, function(color, strainKey) {
 			var points = theoreticalYields['phase-planes'][strainKey];
-
+			angular.forEach(theoreticalYields['phase-planes'][strainKey], function (value, key) {
+				if (key != 'objective_lower_bound' && key != 'objective_upper_bound') {
+					currentKey = key;
+				}
+			});
 			var keys = ['objective_lower_bound', 'objective_upper_bound'];
 			for (var ind in keys) {
-				this.push({
+ 				this.push({
 					x: points[keys[ind]],
 					y: points[currentKey],
 					type: 'line',
@@ -38,6 +41,7 @@ export class PlotService {
 			}
 
 			if (currentKey !== null) {
+
 				function connect(index: number) {
 					return {
 						x: [points['objective_lower_bound'][index], points['objective_upper_bound'][index]],

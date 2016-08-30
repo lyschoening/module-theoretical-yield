@@ -5,8 +5,7 @@ var PlotService = (function () {
     function PlotService() {
     }
     PlotService.prototype.plotPhase = function (domId, metabolite, growthRate, theoreticalYields) {
-        var strains = { 'wild': 'rgb(205, 12, 24)', 'modified': 'rgb(22, 96, 167)' };
-        console.log(theoreticalYields);
+        var strains = { 'wild': 'rgb(22, 96, 167)', 'modified': 'rgb(205, 12, 24)' };
         var point = {
             x: growthRate,
             y: [theoreticalYields.flux],
@@ -19,6 +18,11 @@ var PlotService = (function () {
         var currentKey = null;
         angular.forEach(strains, function (color, strainKey) {
             var points = theoreticalYields['phase-planes'][strainKey];
+            angular.forEach(theoreticalYields['phase-planes'][strainKey], function (value, key) {
+                if (key != 'objective_lower_bound' && key != 'objective_upper_bound') {
+                    currentKey = key;
+                }
+            });
             var keys = ['objective_lower_bound', 'objective_upper_bound'];
             for (var ind in keys) {
                 this.push({
