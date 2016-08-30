@@ -60,6 +60,9 @@ export class PlotService {
 		}, data);
 
 		var layout = {
+			autosize: false,
+			width: 400,
+			height: 300,
 			title: metabolite,
 			xaxis: {title: 'growth, 1/h'},
 			yaxis: {title: currentKey},
