@@ -31,6 +31,7 @@ class TheoreticalYieldController {
 	private $timeout: angular.ITimeoutService;
 	theoreticalYieldService: TheoreticalYieldService;
 	plotService: PlotService;
+	isWaiting: boolean;
 	experiments: any[];
 	samples: any[];
 	formConfig: any[];
@@ -43,6 +44,7 @@ class TheoreticalYieldController {
 		this.plotService = PlotService;
 		this.experiments = [];
 		this.samples = [];
+		this.isWaiting = false;
 		this.loadLists();
 		this.formConfig = [
 			{
@@ -107,16 +109,24 @@ class TheoreticalYieldController {
 
 	submit() {
 		let currentSample = this.searchTexts['samples'];
+		this.isWaiting = true;
 		this.theoreticalYieldService.sampleYields(currentSample)
-			.then((data: any) => {
-				this.data[currentSample] = data.data;
-				angular.forEach(this.data[currentSample], (phaseYields, phase) => {
-					angular.forEach(phaseYields.metabolites, (metaboliteYield, metabolite) => {
-						var id = 'plot_' + phase + '_' + metabolite;
-						angular.element(document.getElementById(id)).ready(() => this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield));
+			.then((data: any) =>
+				{
+					this.isWaiting = false;
+					this.data[currentSample] = data.data;
+					angular.forEach(this.data[currentSample], (phaseYields, phase) => {
+						angular.forEach(phaseYields.metabolites, (metaboliteYield, metabolite) => {
+							var id = 'plot_' + phase + '_' + metabolite;
+							angular.element(document.getElementById(id)).ready(() => this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield));
+						});
 					});
-				});
-			});
+				},
+				// Error
+				([status, dataResponse]) => {
+					this.isWaiting = false;
+				}
+			);
 	}
 }
 

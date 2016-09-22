@@ -32,6 +32,7 @@ var TheoreticalYieldController = (function () {
         this.plotService = PlotService;
         this.experiments = [];
         this.samples = [];
+        this.isWaiting = false;
         this.loadLists();
         this.formConfig = [
             {
@@ -92,8 +93,10 @@ var TheoreticalYieldController = (function () {
     TheoreticalYieldController.prototype.submit = function () {
         var _this = this;
         var currentSample = this.searchTexts['samples'];
+        this.isWaiting = true;
         this.theoreticalYieldService.sampleYields(currentSample)
             .then(function (data) {
+            _this.isWaiting = false;
             _this.data[currentSample] = data.data;
             angular.forEach(_this.data[currentSample], function (phaseYields, phase) {
                 angular.forEach(phaseYields.metabolites, function (metaboliteYield, metabolite) {
@@ -101,6 +104,11 @@ var TheoreticalYieldController = (function () {
                     angular.element(document.getElementById(id)).ready(function () { return _this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield); });
                 });
             });
+        }, 
+        // Error
+        function (_a) {
+            var status = _a[0], dataResponse = _a[1];
+            _this.isWaiting = false;
         });
     };
     return TheoreticalYieldController;

@@ -12,6 +12,7 @@
 			</div>
 			<md-button type="submit">Build graphs</md-button>
 		</form>
+		<md-progress-linear ng-if="TheoreticalYieldController.isWaiting" md-mode="indeterminate"></md-progress-linear>
 		<div ng-repeat="(key, value) in TheoreticalYieldController.data[TheoreticalYieldController.searchTexts['samples']]" md-dynamic-height md-border-bottom>
 			<h4>Phase {{ key }}</h4>
 			<md-grid-list md-cols="2" md-row-height="350">
