@@ -17,10 +17,16 @@ var TheoreticalYieldService = (function () {
             url: constants_1.API_ROOT_URL + "/experiments/" + experimentId + "/samples"
         });
     };
-    TheoreticalYieldService.prototype.sampleYields = function (sampleId) {
+    TheoreticalYieldService.prototype.loadPhases = function (sampleId) {
         return this.$http({
             method: 'GET',
-            url: constants_1.API_ROOT_URL + "/samples/" + sampleId + "/maximum-yield"
+            url: constants_1.API_ROOT_URL + "/samples/" + sampleId + "/phases"
+        });
+    };
+    TheoreticalYieldService.prototype.sampleYields = function (sampleId, phaseId) {
+        return this.$http({
+            method: 'GET',
+            url: constants_1.API_ROOT_URL + "/samples/" + sampleId + "/maximum-yield?phase-id=" + phaseId,
         });
     };
     return TheoreticalYieldService;

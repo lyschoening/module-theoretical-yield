@@ -21,10 +21,16 @@ export class TheoreticalYieldService {
 			url: `${API_ROOT_URL}/experiments/${experimentId}/samples`
 		});
 	}
-	sampleYields(sampleId) {
+	loadPhases(sampleId) {
 		return this.$http({
 			method: 'GET',
-			url: `${API_ROOT_URL}/samples/${sampleId}/maximum-yield`
+			url: `${API_ROOT_URL}/samples/${sampleId}/phases`
+		});
+	}
+	sampleYields(sampleId, phaseId) {
+		return this.$http({
+			method: 'GET',
+			url: `${API_ROOT_URL}/samples/${sampleId}/maximum-yield?phase-id=${phaseId}`,
 		});
 	}
 }

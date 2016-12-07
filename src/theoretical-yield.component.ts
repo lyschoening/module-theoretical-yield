@@ -33,7 +33,8 @@ class TheoreticalYieldController {
 	plotService: PlotService;
 	isWaiting: boolean;
 	experiments: any[];
-	samples: any[];
+	samples: any;
+	phases: any;
 	formConfig: any[];
 	searchTexts: any;
 	data: any;
@@ -43,7 +44,8 @@ class TheoreticalYieldController {
 		this.theoreticalYieldService = TheoreticalYieldService;
 		this.plotService = PlotService;
 		this.experiments = [];
-		this.samples = [];
+		this.samples = {};
+		this.phases = {};
 		this.isWaiting = false;
 		this.loadLists();
 		this.formConfig = [
@@ -56,7 +58,12 @@ class TheoreticalYieldController {
 				'title': 'Sample',
 				'attr': 'samples',
 				'list': () => this.samples[this.searchTexts.experiments]
-			}
+			},
+			{
+				'title': 'Phases',
+				'attr': 'phases',
+				'list': () => this.phases[this.searchTexts.samples]
+			},
 		];
 		this.searchTexts = {};
 		this.data = {};
@@ -103,23 +110,47 @@ class TheoreticalYieldController {
 							})
 						})
 					}
-				)
+				);
+				console.log(1, this.samples, this.samples[1]);
+				this.loadPhases();
+		});
+	}
+
+	loadPhases() {
+		this.experiments.forEach((value) => {
+			angular.forEach(this.samples, (k, v) => {k.forEach((v) => {console.log(v)})});
+			console.log(value.value, this.samples, this.samples[value.value]);
+			let samples = this.samples[value.value];
+			console.log(samples);
+			samples.forEach((value) => {
+				let sampleId = value.value;
+				this.phases[sampleId] = {};
+				this.theoreticalYieldService.loadPhases(sampleId)
+					.then((data:any) => {
+							data.data.forEach((phase) => {
+								this.phases[sampleId].push({
+									value: phase.id,
+									display: phase.name
+								})
+							})
+						}
+					)
+			});
 		});
 	}
 
 	submit() {
 		let currentSample = this.searchTexts['samples'];
+		let currentPhase = this.searchTexts['phases'];
 		this.isWaiting = true;
-		this.theoreticalYieldService.sampleYields(currentSample)
+		this.theoreticalYieldService.sampleYields(currentSample, currentPhase)
 			.then((data: any) =>
 				{
 					this.isWaiting = false;
-					this.data[currentSample] = data.data;
-					angular.forEach(this.data[currentSample], (phaseYields, phase) => {
-						angular.forEach(phaseYields.metabolites, (metaboliteYield, metabolite) => {
-							var id = 'plot_' + phase + '_' + metabolite;
-							angular.element(document.getElementById(id)).ready(() => this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield));
-						});
+					this.data = data.data;
+					angular.forEach(this.data.metabolites, (metaboliteYield, metabolite) => {
+						var id = 'plot_' + metabolite;
+						angular.element(document.getElementById(id)).ready(() => this.plotService.plotPhase(id, metabolite, this.data['growth-rate'], metaboliteYield));
 					});
 				},
 				// Error

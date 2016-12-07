@@ -31,7 +31,8 @@ var TheoreticalYieldController = (function () {
         this.theoreticalYieldService = TheoreticalYieldService;
         this.plotService = PlotService;
         this.experiments = [];
-        this.samples = [];
+        this.samples = {};
+        this.phases = {};
         this.isWaiting = false;
         this.loadLists();
         this.formConfig = [
@@ -44,7 +45,12 @@ var TheoreticalYieldController = (function () {
                 'title': 'Sample',
                 'attr': 'samples',
                 'list': function () { return _this.samples[_this.searchTexts.experiments]; }
-            }
+            },
+            {
+                'title': 'Phases',
+                'attr': 'phases',
+                'list': function () { return _this.phases[_this.searchTexts.samples]; }
+            },
         ];
         this.searchTexts = {};
         this.data = {};
@@ -88,21 +94,44 @@ var TheoreticalYieldController = (function () {
                     });
                 });
             });
+            console.log(1, _this.samples, _this.samples[1]);
+            _this.loadPhases();
+        });
+    };
+    TheoreticalYieldController.prototype.loadPhases = function () {
+        var _this = this;
+        this.experiments.forEach(function (value) {
+            angular.forEach(_this.samples, function (k, v) { k.forEach(function (v) { console.log(v); }); });
+            console.log(value.value, _this.samples, _this.samples[value.value]);
+            var samples = _this.samples[value.value];
+            console.log(samples);
+            samples.forEach(function (value) {
+                var sampleId = value.value;
+                _this.phases[sampleId] = {};
+                _this.theoreticalYieldService.loadPhases(sampleId)
+                    .then(function (data) {
+                    data.data.forEach(function (phase) {
+                        _this.phases[sampleId].push({
+                            value: phase.id,
+                            display: phase.name
+                        });
+                    });
+                });
+            });
         });
     };
     TheoreticalYieldController.prototype.submit = function () {
         var _this = this;
         var currentSample = this.searchTexts['samples'];
+        var currentPhase = this.searchTexts['phases'];
         this.isWaiting = true;
-        this.theoreticalYieldService.sampleYields(currentSample)
+        this.theoreticalYieldService.sampleYields(currentSample, currentPhase)
             .then(function (data) {
             _this.isWaiting = false;
-            _this.data[currentSample] = data.data;
-            angular.forEach(_this.data[currentSample], function (phaseYields, phase) {
-                angular.forEach(phaseYields.metabolites, function (metaboliteYield, metabolite) {
-                    var id = 'plot_' + phase + '_' + metabolite;
-                    angular.element(document.getElementById(id)).ready(function () { return _this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield); });
-                });
+            _this.data = data.data;
+            angular.forEach(_this.data.metabolites, function (metaboliteYield, metabolite) {
+                var id = 'plot_' + metabolite;
+                angular.element(document.getElementById(id)).ready(function () { return _this.plotService.plotPhase(id, metabolite, _this.data['growth-rate'], metaboliteYield); });
             });
         }, 
         // Error
