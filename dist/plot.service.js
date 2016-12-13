@@ -28,7 +28,8 @@ var PlotService = (function () {
                 this.push({
                     x: points[keys[ind]],
                     y: points[currentKey],
-                    type: 'line',
+                    type: 'scatter',
+                    mode: 'lines',
                     showlegend: false,
                     line: { color: color },
                     name: currentKey
@@ -39,7 +40,8 @@ var PlotService = (function () {
                     return {
                         x: [points['objective_lower_bound'][index], points['objective_upper_bound'][index]],
                         y: [points[currentKey][index], points[currentKey][index]],
-                        type: 'line',
+                        type: 'scatter',
+                        mode: 'lines',
                         showlegend: false,
                         line: { color: color },
                         name: currentKey
