@@ -1,7 +1,7 @@
 # Decaf Component
 > A component for the Decaf Platform.
 
-### Installation
+## Installation
 ----------------
 Download the [component](https://github.com/biosustain/decaf-frontend-module-example/archive/master.zip) or clone it `git clone git@github.com:biosustain/decaf-frontend-module-example.git`.
 
@@ -12,7 +12,7 @@ Install dev and runtime dependencies:
 * `$(npm bin)/typings install`
 
 
-### Setup
+## Setup
 ---------
 If you successfully setup the project using the steps above, you can run the app with `$(npm bin)/gulp serve`.
 
@@ -70,8 +70,65 @@ That will be the entry point of the component markup when navigating to the comp
 Besides `content@`, you also have the option to overide the toolbar by providing a view with the key `toolbar@`.
 
 
-### Development
+## Development
 ---------------
 I advise linting the source files before you commit, use `$(npm bin)/gulp lint`.
 
 For other tasks run `$(npm bin)/gulp --tasks`.
+
+### New dependencies
+--------------------
+New packages can be used by first making sure you have `jspm` installed
+```
+npm install jspm -g
+```
+
+then
+
+```
+jspm install <package>
+```
+
+this will automatically adjust `package.json`. Next install the typics
+```
+typings install dt~<package> --global --save
+```
+Make sure your component.ts file has 
+```
+/// <reference path="../typings/index.d.ts"/>
+```
+to indicate where to look for imports. Then you import your package with
+```
+import '<package>'
+```
+
+Make sure you inject the new package (string) when you create the
+module (call to `angular.module`) and inject the new class to your
+class by defining this in the constructor e.g.
+
+```
+...
+myNewDep: NameOfClass;
+
+constructor(..., NewDep: NameOfClass) {
+   this.myNewDep = NewDep;
+   ...
+}
+```
+
+Knowing the `NameOfClass` is not necessarily obvious but studying
+installed typings you may find a clue as to what you should import.
+
+### Deployment
+--------------------
+
+When frontend module is changed (updated on github), a few manual actions are needed to deploy it.
+
+1. trigger a build on
+   [decaf-frontend docker hub](https://hub.docker.com/r/dddecaf/decaf-frontend/~/settings/automated-builds/). Pay
+   attention to which image is deployed at the moment.
+2. Wait until new image is built (see the build [status pagge](https://hub.docker.com/r/dddecaf/decaf-frontend/builds/)
+3. Redeploy `decaf-frontend`
+   [stack on docker cloud](https://cloud.docker.com/app/dddecaf/stack/4ceb7e27-963f-4d22-85dd-96eaa210ffee/general). Make
+   sure to not "Reuse existing container volumes?" as old frontend
+   files are otherwise reused. Frontend container status being "stopped" is normal.
