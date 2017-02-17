@@ -16,6 +16,9 @@ module.exports = function () {
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js']
 		},
+		node: {
+		  fs: "empty"
+		},
 		plugins: [
 			new webpack.optimize.CommonsChunkPlugin({
 				names: ['vendor', 'manifest'],
@@ -77,6 +80,10 @@ module.exports = function () {
 					include: [
 						path.resolve(__dirname, 'src')
 					]
+				},
+				{
+					test: /src\/\.js/,
+					loader: 'ify-loader'
 				}
 			]
 		},

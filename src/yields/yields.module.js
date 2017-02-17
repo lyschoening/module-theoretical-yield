@@ -1,9 +1,11 @@
 import angular from 'angular';
-import {TheoreticalYieldComponent} from './yields.component';
 import VARIANTS_ICON from '../../img/icons/variants.svg';
+import theoreticalYieldService from './yields.service';
+import {TheoreticalYieldComponent} from './yields.component'
 
 
 export const TheoreticalYieldModule = angular.module('yields', [
+		theoreticalYieldService.name
 	])
     .component('yields', TheoreticalYieldComponent)
     .config(function ($mdIconProvider, $stateProvider, appNavigationProvider) {
