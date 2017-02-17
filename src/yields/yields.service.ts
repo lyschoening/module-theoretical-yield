@@ -1,9 +1,6 @@
 import {API_ROOT_URL} from './constants';
 
 
-const theoreticalYieldService = angular.module('yields.service', []);
-
-
 export class TheoreticalYieldService {
 	private $http: angular.IHttpService;
 
@@ -29,7 +26,4 @@ export class TheoreticalYieldService {
 		});
 	}
 }
-
-theoreticalYieldService.service('TheoreticalYieldService', TheoreticalYieldService);
-export default theoreticalYieldService;
 

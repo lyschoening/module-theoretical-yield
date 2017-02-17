@@ -80,10 +80,6 @@ module.exports = function () {
 					include: [
 						path.resolve(__dirname, 'src')
 					]
-				},
-				{
-					test: /src\/\.js/,
-					loader: 'ify-loader'
 				}
 			]
 		},

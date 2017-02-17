@@ -1,4 +1,4 @@
-import Plotly from 'plotly.js';
+// import Plotly from 'plotly.js';
 
 export class PlotService {
 	constructor() {
@@ -82,6 +82,6 @@ export class PlotService {
 			}
 		};
 
-		Plotly.newPlot(domId, data, layout);
+		// Plotly.newPlot(domId, data, layout);
 	}
 }
