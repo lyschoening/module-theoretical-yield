@@ -1,8 +1,6 @@
 // import Plotly from 'plotly.js';
 
 export class PlotService {
-	constructor() {
-	}
 
 	plotPhase(domId, metabolite, growthRate, theoreticalYields) {
 		var strains = {'wild': 'rgb(22, 96, 167)', 'modified': 'rgb(205, 12, 24)'};
@@ -82,6 +80,9 @@ export class PlotService {
 			}
 		};
 
-		// Plotly.newPlot(domId, data, layout);
+		return {
+			'data': data,
+			'layout': layout
+		};
 	}
 }

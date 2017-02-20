@@ -7,6 +7,7 @@ class TheoreticalYieldController {
     private $timeout: angular.ITimeoutService;
     TheoreticalYieldService: TheoreticalYieldService;
     PlotService: PlotService;
+    plotData: any;
     isWaiting: boolean;
     experiments: any[];
     samples: any[];
@@ -21,6 +22,7 @@ class TheoreticalYieldController {
         this.experiments = [];
         this.samples = [];
         this.isWaiting = false;
+        this.plotData = {};
         this.loadLists();
         this.formConfig = [
             {
@@ -94,7 +96,7 @@ class TheoreticalYieldController {
                     angular.forEach(this.data[currentSample], (phaseYields, phase) => {
                         angular.forEach(phaseYields.metabolites, (metaboliteYield, metabolite) => {
                             var id = 'plot_' + phase + '_' + metabolite;
-                            // angular.element(document.getElementById(id)).ready(() => this.plotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield));
+                            this.plotData[id] = this.PlotService.plotPhase(id, metabolite, phaseYields['growth-rate'], metaboliteYield);
                         });
                     });
                 },
@@ -105,8 +107,6 @@ class TheoreticalYieldController {
             );
     }
 }
-// gromiki
-console.log(module);
 
 export const TheoreticalYieldComponent: angular.IComponentOptions = {
     controller: TheoreticalYieldController,
